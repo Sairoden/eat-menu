@@ -1,9 +1,15 @@
 // import { useState } from "react";
 
+import FriendList from "./components/FriendList";
+import FormAddFriend from "./components/FormAddFriend";
+
 function App() {
   return (
     <div className="app">
-      <h1>Hello world</h1>
+      <div className="sidebar">
+        <FriendList />
+        <FormAddFriend />
+      </div>
     </div>
   );
 }

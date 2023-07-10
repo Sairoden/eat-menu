@@ -3,9 +3,12 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.scss";
 
+import { FriendProvider } from "./context/friend_context";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <FriendProvider>
+      <App />
+    </FriendProvider>
   </React.StrictMode>
 );
- 
