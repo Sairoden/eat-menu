@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useFriendContext } from "./context/friend_context";
 
 // Components
@@ -8,19 +9,28 @@ import FormSplitBill from "./components/FormSplitBill";
 
 function App() {
   const { showAddFriend, setShowAddFriend } = useFriendContext();
+  const [selectedFriend, setSelectedFriend] = useState(null);
 
   const handleShowAddFriend = () => setShowAddFriend(!showAddFriend);
+
+  const handleSelection = friend =>
+    setSelectedFriend(currentSelected =>
+      currentSelected?.id === friend.id ? null : friend
+    );
 
   return (
     <div className="app">
       <div className="sidebar">
-        <FriendList />
+        <FriendList
+          selectedFriend={selectedFriend}
+          handleSelection={handleSelection}
+        />
         {showAddFriend && <FormAddFriend />}
         <Button onClick={handleShowAddFriend}>
           {showAddFriend ? "Close" : "Add  friend"}
         </Button>
       </div>
-      <FormSplitBill />
+      {selectedFriend && <FormSplitBill {...selectedFriend} />}
     </div>
   );
 }
